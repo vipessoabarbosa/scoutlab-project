@@ -54,37 +54,30 @@ Ferramentas necessárias:
 
 ## **4. Estrutura de Diretórios**
 
-Inspirada nos exemplos de “roadmap_projeto.md” e “projetc_plain.md”, nossa organização mínima pode ser:
-
 ```
-futebol-analise/
-
+01_SCOUTLAB-PROJECT/
+├─ .vscode/
+│  ├─ launch.json
+│  ├─ python.code-snippets
+│  └─ settings.json
 ├─ data/
-│  ├─ raw/          # Dados brutos
-│  └─ processed/    # Dados tratados
-
-├─ documentation/   # Documentos internos
-│  ├─ project/
-│  ├─ technical/
-│  └─ analysis/
-
-├─ notebooks/
-│  ├─ Exploratory.ipynb   # Análise exploratória
-│  └─ ...
-
-├─ scripts/
-│  ├─ data_collection.py  # Coleta de dados (via soccerdata)
-│  ├─ data_processing.py  # Limpeza e tratamento
-│  ├─ analysis.py         # Cálculo de métricas e comparações (foco em jogadores)
-│  └─ visualization.py    # Funções de geração de visualizações
-
-├─ main.py                # Arquivo principal (execução e menu)
+│  ├─ raw/
+│  │  ├─ fbref/
+│  │  └─ whoscored/
+│  └─ processed/
+├─ documentation/
+│  ├─ config_ambiente.md
+│  └─ plan_proj.md
 ├─ logs/
-├─ tests/                 # Testes básicos
-├─ config/                # Configurações do projeto
-│  └─ ...
-├─ README.md              # Documento principal do repositório
-└─ requirements.txt       # Dependências
+├─ notebooks/
+├─ scripts/
+├─ tests/
+│  └─ test_setup.py
+├─ .gitignore
+├─ README.md
+├─ requirements.txt
+├─ setup.cfg
+└─ venv/  # Apesar de listada no .gitignore, a pasta pode ser mencionada para fins de organização do projeto.
 ```
 
 *Observação*: Cada projeto pode personalizar conforme a necessidade, adicionando subpastas (por exemplo, `analysis/`, `visualization/`) para manter a modularização.
@@ -95,13 +88,13 @@ futebol-analise/
 
 O projeto segue uma abordagem **iterativa e incremental**, dividida em etapas:
 
-1. **Planejamento Inicial**: Definição de objetivos, escopo e métricas mínimas (documento atual).  
-2. **Coleta de Dados**: Implementação de scripts para baixar dados via `soccerdata`.  
-3. **Tratamento e Limpeza**: Normalizar colunas, remover duplicadas, corrigir valores nulos. Converter métricas para “por 90 min” quando necessário.  
-4. **Análise Exploratória**: Utilizar notebooks para investigar padrões, correlações e possíveis outliers.  
-5. **Criação de Métricas Avançadas**: Implementar indicadores como xG, xA, progressão, passes-chaves etc., **sempre com foco no atleta**.  
-6. **Comparações e Visualizações**: Geração de gráficos e relatórios finais, comparando jogadores e evidenciando sua evolução.  
-7. **Validação e Testes**: Garantir coerência dos dados.  
+1. **Planejamento Inicial**: Definição de objetivos, escopo e métricas mínimas (documento atual).
+2. **Coleta de Dados**: Implementação de scripts para baixar dados via `soccerdata`.
+3. **Tratamento e Limpeza**: Normalizar colunas, remover duplicadas, corrigir valores nulos. Converter métricas para “por 90 min” quando necessário.
+4. **Análise Exploratória**: Utilizar notebooks para investigar padrões, correlações e possíveis outliers.
+5. **Criação de Métricas Avançadas**: Implementar indicadores como xG, xA, progressão, passes-chaves etc., **sempre com foco no atleta**.
+6. **Comparações e Visualizações**: Geração de gráficos e relatórios finais, comparando jogadores e evidenciando sua evolução.
+7. **Validação e Testes**: Garantir coerência dos dados.
 8. **Iteração Contínua**: Ajustar configurações, refinar métricas, adicionar funcionalidade de relatórios automatizados.
 
 ---
@@ -176,26 +169,26 @@ Adotar um esquema estrela (*star schema*) com tabelas dimensionais (**Temporada*
 
 ## **7. Scripts e Notebooks**
 
-1. **`main.py`**  
+1. **`main.py`**
    - **Função**: ponto central de execução — exibe menu interativo para escolher ligas e iniciar rotinas de coleta e análise.
 
-2. **`data_collection.py`**  
-   - **Função**: coleta de dados usando `soccerdata`. Pode incluir funções para extrair de diferentes fontes (FBRef, WhoScored).  
+2. **`data_collection.py`**
+   - **Função**: coleta de dados usando `soccerdata`. Pode incluir funções para extrair de diferentes fontes (FBRef, WhoScored).
    - **Resultado**: arquivos CSV salvos em `data/raw/`.
 
-3. **`data_processing.py`**  
-   - **Função**: limpeza, padronização de colunas, tratamento de valores nulos e conversão de métricas.  
+3. **`data_processing.py`**
+   - **Função**: limpeza, padronização de colunas, tratamento de valores nulos e conversão de métricas.
    - **Resultado**: dados consolidados em `data/processed/`.
 
-4. **`analysis.py`**  
-   - **Função**: cálculo de métricas avançadas (xG, xA, passes-chaves, etc.) e **comparações entre jogadores**.  
+4. **`analysis.py`**
+   - **Função**: cálculo de métricas avançadas (xG, xA, passes-chaves, etc.) e **comparações entre jogadores**.
    - **Resultado**: DataFrames com indicadores prontos para visualização.
 
-5. **`visualization.py`**  
-   - **Função**: criação de gráficos estáticos e/ou interativos (radar charts, scatter plots, heatmaps).  
+5. **`visualization.py`**
+   - **Função**: criação de gráficos estáticos e/ou interativos (radar charts, scatter plots, heatmaps).
    - **Resultado**: figuras salvas em `reports/` ou exibidas dinamicamente.
 
-6. **Notebooks (ex.: `Exploratory.ipynb`)**  
+6. **Notebooks (ex.: `Exploratory.ipynb`)**
    - **Função**: análises manuais, testes de métricas, *plot* inicial de visualizações, verificação de dados.
 
 ---
@@ -204,20 +197,20 @@ Adotar um esquema estrela (*star schema*) com tabelas dimensionais (**Temporada*
 
 ### **8.1 Métricas Básicas**
 
-- Gols, Assistências, Finalizações, xG, xA  
-- Passes, Passes-Chave, Precisão (%)  
-- Desarmes, Interceptações, Duelos Aéreos  
+- Gols, Assistências, Finalizações, xG, xA
+- Passes, Passes-Chave, Precisão (%)
+- Desarmes, Interceptações, Duelos Aéreos
 - Etc.
 
 ### **8.2 Métricas Avançadas & Compostas**
 
-- Índice de Pressão Efetiva, Índice de Criação de Chances, Eficiência de Finalização Ajustada (EFA), entre outras.  
+- Índice de Pressão Efetiva, Índice de Criação de Chances, Eficiência de Finalização Ajustada (EFA), entre outras.
 - Métricas específicas por posição (atacantes, meio-campistas, defensores, goleiros).
 
 ### **8.3 Comparações e Rankings**
 
-- Melhor jogador por posição baseado em percentil em métricas-chave.  
-- Evolução de desempenho ao longo de rodadas.  
+- Melhor jogador por posição baseado em percentil em métricas-chave.
+- Evolução de desempenho ao longo de rodadas.
 - Comparação entre 2 ou mais jogadores (ex.: radar charts).
 
 ---
@@ -226,33 +219,33 @@ Adotar um esquema estrela (*star schema*) com tabelas dimensionais (**Temporada*
 
 ### **9.1 Gráficos Estáticos**
 
-- **Scatter Plots**: correlação entre métricas (e.g., xG vs Finalizações).  
-- **Barras**: comparação direta de métricas básicas (e.g., gols por 90min).  
+- **Scatter Plots**: correlação entre métricas (e.g., xG vs Finalizações).
+- **Barras**: comparação direta de métricas básicas (e.g., gols por 90min).
 - **Heatmaps**: para mostrar zonas de ação dos jogadores no campo (quando dados de evento estiverem disponíveis).
 
 ### **9.2 Gráficos Interativos**
 
-- **Radar / Spider Charts**: comparar atributos de 2+ jogadores.  
+- **Radar / Spider Charts**: comparar atributos de 2+ jogadores.
 - **Dashboards**: via Plotly/Dash ou Streamlit para seleção dinâmica de jogadores, ligas e métricas.
 
 ---
 
 ## **10. Exportação e Integrações**
 
-1. **Relatórios**  
-   - Exportação de relatórios em PDF ou HTML.  
+1. **Relatórios**
+   - Exportação de relatórios em PDF ou HTML.
    - Arquivos CSV com métricas finais para uso em outras ferramentas (Power BI, Tableau).
 
-2. **Integrações Futuras**  
-   - API interna para fornecer dados a sistemas de scouting ou plataformas táticas.  
+2. **Integrações Futuras**
+   - API interna para fornecer dados a sistemas de scouting ou plataformas táticas.
    - Integração com bancos de dados relacionais (PostgreSQL) para escalabilidade.
 
 ---
 
 ## **11. Validação e Testes**
 
-- **Testes Unitários**: verificar se funções de coleta, limpeza e métricas retornam o esperado.  
-- **Testes de Integração**: garantir que o pipeline de coleta → processamento → análise → visualização funciona sem falhas.  
+- **Testes Unitários**: verificar se funções de coleta, limpeza e métricas retornam o esperado.
+- **Testes de Integração**: garantir que o pipeline de coleta → processamento → análise → visualização funciona sem falhas.
 - **Validação Estatística**: checar outliers, valores nulos, consistência de métricas (e.g., xG não exceder total de chutes).
 
 ---
@@ -261,10 +254,10 @@ Adotar um esquema estrela (*star schema*) com tabelas dimensionais (**Temporada*
 
 O `main.py` conterá um **menu** que permitirá ao usuário:
 
-1. Escolher liga e/ou temporada.  
-2. Executar coleta de dados.  
-3. Processar e limpar dados.  
-4. Gerar análises (comparações, rankings de jogadores).  
+1. Escolher liga e/ou temporada.
+2. Executar coleta de dados.
+3. Processar e limpar dados.
+4. Gerar análises (comparações, rankings de jogadores).
 5. Visualizar resultados (em janela ou exportar relatórios).
 
 Essa estratégia minimiza a necessidade de múltiplos scripts ou parametrizações manuais nos notebooks.
@@ -273,10 +266,10 @@ Essa estratégia minimiza a necessidade de múltiplos scripts ou parametrizaçõ
 
 ## **13. Melhorias Futuras**
 
-1. **Automação de Rotina**: Atualizar dados de forma periódica, integrando pipelines no GitHub Actions ou outra ferramenta de CI/CD.  
-2. **Dashboard Web**: Criar uma aplicação (React + Flask/Streamlit) para dar acesso público ou interno às análises de jogadores.  
-3. **Uso de Dados de Tracking**: Incluir coordenadas de movimentação no campo, quando disponível, para mapas de ação mais avançados.  
-4. **Machine Learning / Modelos Preditivos**: Futuramente, prever desempenho de jogadores ou identificar potenciais de contratação.  
+1. **Automação de Rotina**: Atualizar dados de forma periódica, integrando pipelines no GitHub Actions ou outra ferramenta de CI/CD.
+2. **Dashboard Web**: Criar uma aplicação (React + Flask/Streamlit) para dar acesso público ou interno às análises de jogadores.
+3. **Uso de Dados de Tracking**: Incluir coordenadas de movimentação no campo, quando disponível, para mapas de ação mais avançados.
+4. **Machine Learning / Modelos Preditivos**: Futuramente, prever desempenho de jogadores ou identificar potenciais de contratação.
 5. **Integração com Opcionais**: Usar TransferMarkt para dados de valor de mercado, Wyscout, InStat ou outras plataformas (quando fizer sentido para o projeto).
 
 ---

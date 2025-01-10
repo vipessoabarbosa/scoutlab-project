@@ -1,0 +1,12 @@
+{
+    "Print DataFrame Info": {
+        "prefix": "dfinfo",
+        "body": [
+            "print(f'Shape: {${1:df}.shape}')",
+            "print('\\nInfo:')",
+            "${1:df}.info()",
+            "print('\\nMissing Values:')",
+            "print(${1:df}.isnull().sum())"
+        ]
+    }
+}
