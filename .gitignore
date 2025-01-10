@@ -22,3 +22,6 @@ __pycache__/
 *.csv
 *.xlsx
 *.sqlite
+
+# Config do VSCode
+.vscode/
